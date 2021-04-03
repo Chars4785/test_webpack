@@ -6,7 +6,7 @@
   "repository": "https://github.com/Chars4785/test_webpack.git",
   "author": "Chars4785 <9105lgm@naver.com>",
   "license": "MIT",
-  "script": {
+  "scripts": {
     "start": "webpack-dev-server"
   },
   "dependencies": {

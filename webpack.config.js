@@ -8,4 +8,12 @@ module.exports = {
     filename: 'index_bundle.js',
   },
   plugins: [new HtmlWebpackPlugin()],
+  module: {
+    rules: [
+      { 
+        test: /\.tsx?$/, 
+        loader: 'awesome-typescript-loader'
+      }
+    ]
+  }
 };

@@ -1,5 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import * as React from 'react';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+
+export default function App(){
+    return (
+      <div>
+        <h1>Welcome to React with Typescript</h1>
+        <p>The color of this page is: {this.props.color}</p>
+      </div>
+    );
+}

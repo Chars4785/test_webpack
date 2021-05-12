@@ -15,7 +15,7 @@ webpack, TypeScript, babel
 package.json
 
 ---
-
+```
 "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production"
@@ -45,7 +45,7 @@ package.json
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.11.0"
   }
-
+```
 필요한 것들
 
 - webpack
@@ -57,7 +57,7 @@ package.json
 ### webpack.config.js
 
 ---
-
+```
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -85,7 +85,7 @@ module.exports = {
     })
   ]
 }
-
+```
 - **entry** : 연결되어 있는 각 파일 중, 제일 처음으로 시작되는 최상위 파일. 해당 최상위 파일부터 각 각 하위로 따라 내려가며 번들화 작업을 한다.
 - **output**: 번들화 된 파일을 export 할 경로와 파일명.
 
@@ -94,7 +94,7 @@ module.exports = {
 ### tsconfig.json
 
 ---
-
+```
 {
   "compilerOptions": {
     "sourceMap": true,
@@ -118,7 +118,7 @@ module.exports = {
     }
   }
 }
-
+```
 ---
 
 ## Error

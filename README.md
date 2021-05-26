@@ -49,8 +49,10 @@ package.json
 필요한 것들
 
 - webpack
-- webpack-dev-server
+- webpack-dev-server: express 기반으로 되어 있는 web server 이다.
+번들 파일을 만드는 것 대신에 (bundle.js) local browser 에서 실행 할수 있게 도와준다.
 - html-webpack-plugin-D
+bundle한 css,js파일을 각각 html파일에 link 태그와 scripts태그로 추가해줘야 한다. 이걸 자동화 시켜주는 라이브러리다.
 - webpack-cli
 - awesome-typescript-loader
 
@@ -153,6 +155,73 @@ development: process.env.NODE_ENV 에 대한 DefinePlugin 값 development 모듈
 }
 ```
 tsconfig.json: 프로젝트를 컴파일 하는데 필요한 루트 파일과 컴파일러 옵션을 지정합니다.
+
+typeScript or javaScript project 설정을 합니다.
+
+- "compilerOptions": 속성은 생략될 수 있으며 생략하면 컴파일러의 기본 값이 사용됩니다.
+- "sourceMap": true
+
+## **tsc vs babel**
+
+---
+
+how to convert from TypeScript to  JavaScript 
+
+- Is your build output mostly the same as your source input files? Use `tsc`
+- Do you need a build pipeline with multiple potential outputs? Use `babel` for transpiling and `tsc` for type checking
+
+## **바벨을 사용해야 하는 이유**
+
+---
+
+**바벨7 이전**
+
+TS > TS compiler > JS > Babel > JS 순서
+
+웹팩은 두개의 컴파일러를 함께 사용하기 위해 사용된다. ( babel, tsc ) 웹팹 설정을 비틀어 *.ts 를 타입스크립트로 입력한 다음 결과를 바벨에 제공한다. 웹팩의 탑이스크립트 로더에는 ts-loader, awesome-typscript-loader 가 있는데 awe~  일부 작업의 부하로 컴파일 속도가 느리며, ts-loader는 많은 복잡한 캐시 로더를 함께 설정하여 사용해야 하는 불편함이 있다.
+
+**바벨7 이후**
+
+바벨은 타입스크립트를 우선 js로 변경한다. 
+
+- 바벨 + 타입스크립트코드는 느린 컴파일 시간 개선
+- 준비가 되었을 때만 타입 오류를 확인하라
+( js로 우선 안정성 검사 하지 않고 컴파일한 다음 코드 실험이 끝나고 타입 검사를 진행한다. )
+- TypeScript는 전체 프로젝트를 컴파일 하지만 Babel은 한번에 하나의 파일만 컴파일 한다.
+```
+{
+	"compilerOptions": {
+		// Target latest version of ECMAScript.
+		"target": "esnext",
+		// Search under node_modules for non-relative imports.
+		"moduleResolution": "node",
+		// Process & infer types from .js files.
+		"allowJs": true,
+		// Don't emit; allow Babel to transform files.
+		"noEmit": true,
+		// Enable strictest settings like strictNullChecks & noImplicitAny.
+		"strict": true,
+		// Disallow features that require cross-file information for emit.
+		"isolatedModules": true,
+		// Import non-ES modules as default imports.
+		"esModuleInterop": true
+	},
+	"include": [
+		"src"
+	]
+}
+```
+## 필요한 것들 정리
+
+---
+
+참고
+
+[https://ui.toast.com/weekly-pick/ko_20181220](https://ui.toast.com/weekly-pick/ko_20181220)
+
+[https://www.typescriptlang.org/tsconfig](https://www.typescriptlang.org/tsconfig)
+
+[https://typescript-kr.github.io/pages/tsconfig.json.html](https://typescript-kr.github.io/pages/tsconfig.json.html)
 
 ---
 

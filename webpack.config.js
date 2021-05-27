@@ -12,12 +12,12 @@ module.exports = {
     filename: 'bundle.min.js'
   },
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
-      }
-    ]
+    rules: [{
+        // Include ts, tsx, js, and jsx files.
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+    }],
   },
   plugins: [
     new HtmlWebpackPlugin({
